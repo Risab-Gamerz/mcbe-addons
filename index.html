@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="referrer" content="no-referrer-when-downgrade">
@@ -7,15 +8,28 @@
   <meta name="60944caa36c111cd8fb018dbda38877469f8ce74" content="60944caa36c111cd8fb018dbda38877469f8ce74" />
   <meta name="google-site-verification" content="nAeiZZ2qWCwiRX58LcelEoXRgAJs7X9wgvoKsusJMkw" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="NetherSpark Studios – professional MCPE/Bedrock add-ons. Minimal OLED black & white design.">
-  <meta name="keywords" content="mcpe, minecraft, NetherSpark Studios, texture pack, mods, shaders, oled black, professional">
+  <meta name="description"
+    content="NetherSpark Studios – professional MCPE/Bedrock add-ons. Immerse yourself in the Nether.">
+  <meta name="keywords"
+    content="mcpe, minecraft, NetherSpark Studios, texture pack, mods, shaders, red, orange, yellow, professional">
   <meta name="author" content="Risab Das (RisabGamerz)">
-  <title>NetherSpark Studios · professional OLED</title>
+  <title>NetherSpark Studios · Main Hub</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <!-- Fonts: Inter for UI, Playfair Display for elegant touch (optional) but stick to Inter for clean look -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;800&display=swap"
+    rel="stylesheet">
+
   <style>
-    /* ---------- RESET – TRUE OLED BLACK, MINIMAL, PROFESSIONAL ---------- */
+    :root {
+      --clr-bg: #050505;
+      --clr-red: #ff3b30;
+      --clr-orange: #ff9500;
+      --clr-yellow: #ffcc00;
+      --clr-text: #ffffff;
+      --clr-muted: #a1a1aa;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -23,28 +37,35 @@
     }
 
     body {
-      background-color: #000000; /* pure OLED black */
-      color: #ffffff;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      font-weight: 300;
-      line-height: 1.6;
-      text-align: center;
-      padding: 2rem 1.5rem;
+      background-color: var(--clr-bg);
+      color: var(--clr-text);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
       min-height: 100vh;
-      position: relative;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* very subtle texture (optional, barely visible) */
-    body::before {
-      content: "";
+    /* Animated background gradient */
+    .bg-gradient {
       position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background-image: radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-      background-size: 40px 40px;
-      pointer-events: none;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 50% 50%, rgba(255, 59, 48, 0.15), rgba(255, 149, 0, 0.08), transparent 50%);
       z-index: 1;
+      animation: pulseBg 10s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    @keyframes pulseBg {
+      0% {
+        transform: scale(1);
+      }
+
+      100% {
+        transform: scale(1.1) translate(2%, 2%);
+      }
     }
 
     #particleCanvas {
@@ -54,8 +75,8 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      z-index: 0;
-      opacity: 0.4; /* very faint, just for depth */
+      z-index: 2;
+      opacity: 0.8;
     }
 
     .wrapper {
@@ -63,431 +84,593 @@
       z-index: 20;
       max-width: 1400px;
       margin: 0 auto;
+      padding: 4rem 1.5rem;
+      text-align: center;
     }
 
-    /* ---------- TYPOGRAPHY – PURE BLACK & WHITE, NO ORANGE/RED ---------- */
+    header {
+      margin-bottom: 3rem;
+      animation: fadeDown 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .logo-container {
+      display: inline-block;
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    .company-logo {
+      width: 130px;
+      height: auto;
+      margin: 0 auto 1.5rem auto;
+      display: block;
+      filter: drop-shadow(0 0 25px rgba(255, 149, 0, 0.5));
+      animation: float 6s ease-in-out infinite;
+      border-radius: 50%;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-12px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
     h1 {
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      font-size: clamp(3rem, 12vw, 6rem);
-      text-transform: uppercase;
-      letter-spacing: 8px;
-      color: #ffffff;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-      margin-bottom: 0.5rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(3rem, 10vw, 6rem);
+      font-weight: 800;
       line-height: 1.1;
-      font-weight: 500;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, var(--clr-yellow), var(--clr-orange), var(--clr-red));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 20px rgba(255, 59, 48, 0.4));
     }
 
     .subhead {
-      font-family: 'Inter', sans-serif;
-      font-weight: 300;
-      font-size: 1.4rem;
-      color: #aaaaaa;
-      letter-spacing: 4px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 1.6rem;
+      color: var(--clr-muted);
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      margin-bottom: 1.5rem;
-      border: none;
-      background: transparent;
-      box-shadow: none;
-      padding: 0;
+      margin-top: 0.5rem;
     }
 
     .creator-tag {
       font-family: 'Inter', sans-serif;
-      font-weight: 300;
-      font-size: 1.2rem;
-      color: #888888;
-      background: transparent;
-      border: 1px solid #333333;
-      padding: 0.6rem 2.5rem;
-      display: inline-block;
-      margin: 0.5rem 0 2.5rem 0;
-      letter-spacing: 2px;
-      backdrop-filter: blur(2px);
-    }
-
-    /* social links – monochrome, minimal */
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 2rem 2.5rem;
-      flex-wrap: wrap;
-      margin: 2rem 0 3rem;
-    }
-
-    .social-links a {
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 1.2rem;
-      color: #cccccc;
-      background: transparent;
-      padding: 0.7rem 2.2rem;
-      border: 1px solid #333333;
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      transition: all 0.2s ease;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--clr-orange);
+      background: rgba(255, 149, 0, 0.1);
+      border: 1px solid rgba(255, 149, 0, 0.3);
+      padding: 0.6rem 1.8rem;
+      border-radius: 100px;
       display: inline-flex;
       align-items: center;
       gap: 10px;
+      margin: 1.5rem 0 2rem 0;
+      letter-spacing: 1.5px;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 0 15px rgba(255, 149, 0, 0.15);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 4rem;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.8rem 1.8rem;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--clr-text);
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .social-links a:hover {
-      color: #ffffff;
-      border-color: #666666;
-      background: #111111;
+      background: rgba(255, 149, 0, 0.1);
+      border-color: var(--clr-orange);
+      color: var(--clr-yellow);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(255, 149, 0, 0.25);
     }
 
-    /* search – minimal, white/gray */
     .search-container {
-      margin: 2rem auto 3.5rem;
-      max-width: 600px;
+      margin: 0 auto 4rem;
+      max-width: 650px;
     }
 
     #searchInput {
       width: 100%;
-      padding: 1rem 1.8rem;
-      background: #000000;
-      border: 1px solid #333333;
-      color: #ffffff;
+      padding: 1.2rem 2.5rem;
+      background: rgba(15, 15, 15, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 100px;
+      color: var(--clr-text);
       font-size: 1.2rem;
       font-family: 'Inter', sans-serif;
-      font-weight: 300;
+      font-weight: 400;
       outline: none;
-      transition: 0.15s;
-      border-radius: 0;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     }
 
     #searchInput:focus {
-      border-color: #666666;
-      background: #0a0a0a;
+      border-color: var(--clr-orange);
+      background: rgba(25, 25, 25, 0.9);
+      box-shadow: 0 0 25px rgba(255, 149, 0, 0.3);
     }
 
     #searchInput::placeholder {
-      color: #444444;
-      font-weight: 300;
-      letter-spacing: 0.5px;
+      color: #666;
     }
 
-    /* ---------- GRID – CLEAN, MINIMAL, UNCROPPED IMAGES ---------- */
+    /* Cards Grid */
     .grid-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      padding: 1rem 0 3rem;
-      max-width: 1400px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
       margin: 0 auto;
     }
 
     .grid-item {
-      background: #0a0a0a;
-      border: 1px solid #222222;
-      padding: 1.8rem 1.5rem 2rem;
-      transition: all 0.2s ease;
+      background: rgba(20, 20, 20, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 1.8rem;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       display: flex;
       flex-direction: column;
       align-items: center;
+      backdrop-filter: blur(15px);
+      position: relative;
+      overflow: hidden;
+      animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .grid-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: inherit;
+      padding: 2px;
+      background: linear-gradient(135deg, var(--clr-red), var(--clr-yellow));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
     }
 
     .grid-item:hover {
-      border-color: #444444;
-      background: #111111;
-      transform: translateY(-2px);
+      transform: translateY(-10px) scale(1.03);
+      background: rgba(30, 30, 30, 0.8);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 40px rgba(255, 59, 48, 0.2);
     }
 
-    /* image fit: contain, no cropping */
+    .grid-item:hover::before {
+      opacity: 1;
+    }
+
     .grid-item img {
       width: 100%;
-      height: auto;
-      max-height: 220px;
-      object-fit: contain;
-      background: #000000;
-      border: 1px solid #2a2a2a;
-      margin-bottom: 1.5rem;
-      padding: 0;
-      transition: 0.15s;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 1.8rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .grid-item:hover img {
-      border-color: #555555;
+      transform: scale(1.06);
     }
 
     .grid-item h2 {
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 1.6rem;
-      color: #ffffff;
-      background: transparent;
-      padding: 0.3rem 0;
-      margin: 0 0 1.5rem 0;
-      letter-spacing: 1px;
-      border-bottom: 1px solid #333333;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.5px;
       width: 100%;
+      color: #fff;
     }
 
     .grid-item a {
       font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 1.1rem;
-      color: #cccccc;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--clr-orange);
       background: transparent;
-      padding: 0.6rem 2rem;
-      border: 1px solid #333333;
+      padding: 0.7rem 2.5rem;
+      border: 2px solid var(--clr-orange);
+      border-radius: 100px;
       text-decoration: none;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      transition: 0.15s;
+      letter-spacing: 1.5px;
+      transition: all 0.3s ease;
       margin-top: auto;
-      width: fit-content;
     }
 
     .grid-item a:hover {
-      color: #ffffff;
-      border-color: #777777;
-      background: #1a1a1a;
+      color: var(--clr-bg);
+      background: linear-gradient(90deg, var(--clr-yellow), var(--clr-orange));
+      border-color: transparent;
+      box-shadow: 0 0 20px rgba(255, 149, 0, 0.5);
     }
 
     .footer-note {
       font-family: 'Inter', sans-serif;
-      font-size: 0.9rem;
-      color: #666666;
-      border-top: 1px solid #222222;
-      padding: 2rem 1rem;
-      width: 80%;
-      margin: 2rem auto 0;
-      font-weight: 300;
-      letter-spacing: 1px;
-      background: transparent;
+      font-size: 0.95rem;
+      color: #777;
+      padding: 4rem 1rem 2rem;
+      margin-top: 4rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-weight: 400;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
     }
 
-    ::selection {
-      background: #ffffff;
-      color: #000000;
+    .highlight {
+      color: var(--clr-red);
+      font-weight: 600;
     }
 
-    @media (max-width: 700px) {
-      h1 { font-size: 2.8rem; letter-spacing: 4px; }
-      .subhead { font-size: 1.1rem; }
-      .social-links a { font-size: 1rem; padding: 0.6rem 1.5rem; }
-      .grid-item img { max-height: 170px; }
-      .grid-item h2 { font-size: 1.4rem; }
+    @media (max-width: 768px) {
+      .wrapper {
+        padding: 3rem 1.2rem;
+      }
+
+      h1 {
+        font-size: 3rem;
+        letter-spacing: -1px;
+      }
+
+      .subhead {
+        font-size: 1.3rem;
+      }
+
+      .grid-item img {
+        height: 180px;
+      }
     }
   </style>
 </head>
+
 <body>
+  <div class="bg-gradient"></div>
   <canvas id="particleCanvas"></canvas>
+
   <div class="wrapper">
-    <h1>NETHERSPARK</h1>
-    <div class="subhead">STUDIOS</div>
-    <div class="creator-tag">FOUNDER: RISABGAMERZ</div>
+    <header>
+      <div class="logo-container">
+        <img src="https://nethersparkstudios.github.io/icon.png" alt="NetherSpark Studios Logo" class="company-logo">
+        <h1>NETHERSPARK</h1>
+      </div>
+      <div class="subhead">STUDIOS</div>
+      <div class="creator-tag">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5z" />
+          <path d="M2 17l10 5 10-5" />
+          <path d="M2 12l10 5 10-5" />
+        </svg>
+        FOUNDER: RISABGAMERZ
+      </div>
+    </header>
 
     <div class="social-links">
-      <a href="https://www.youtube.com/@NetherSparkStudios" target="_blank" rel="noopener">📺 YOUTUBE</a>
-      <a href="https://mcpedl.com/user/risabgamerz/page/" target="_blank" rel="noopener">⛏️ MCPEDL</a>
+      <a href="https://www.youtube.com/@NetherSparkStudios" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+        </svg>
+        YOUTUBE
+      </a>
+      <a href="https://mcpedl.com/user/risabgamerz/page/" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path
+            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+          </path>
+          <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+          <line x1="12" y1="22.08" x2="12" y2="12"></line>
+        </svg>
+        MCPEDL
+      </a>
     </div>
 
     <div class="search-container">
-      <input type="text" id="searchInput" placeholder="search add-ons, shaders, packs...">
+      <input type="text" id="searchInput" placeholder="Search add-ons, shaders, packs...">
     </div>
 
-    <!-- 13 items – clean, professional, uncropped thumbnails -->
-  <div class="grid-container" id="gridContainer">
+    <div class="grid-container" id="gridContainer">
+      <!-- 1 -->
+      <div class="grid-item" style="animation-delay: 0.1s">
+        <img src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/xray-glow.jpg"
+          alt="X Ray Glow">
+        <h2>X Ray Glow</h2>
+        <a href="Add-ons/xray.html">VIEW</a>
+      </div>
 
-  <!-- 1 -->
-  <div class="grid-item">
-    <img src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/xray-glow.jpg" alt="X Ray Glow">
-    <h2>X Ray Glow</h2>
-    <a href="Add-ons/xray.html">VIEW</a>
+      <!-- 2 -->
+      <div class="grid-item" style="animation-delay: 0.2s">
+        <img src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/vein_miner.gif"
+          alt="Ore & Tree Vein Miner">
+        <h2>Ore & Tree Vein Miner</h2>
+        <a href="Add-ons/ore_tree_vein_miner.html">VIEW</a>
+      </div>
+
+      <!-- 3 -->
+      <div class="grid-item" style="animation-delay: 0.3s">
+        <img
+          src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/Night_Vision.jpg"
+          alt="Night Vision">
+        <h2>NIGHT VISION</h2>
+        <a href="Add-ons/night_vision.html">VIEW</a>
+      </div>
+
+      <!-- 4 -->
+      <div class="grid-item" style="animation-delay: 0.4s">
+        <img src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/rg_visuals.gif"
+          alt="RG Visuals">
+        <h2>RG Visuals</h2>
+        <a href="Add-ons/rg_visuals.html">VIEW</a>
+      </div>
+
+      <!-- 5 -->
+      <div class="grid-item" style="animation-delay: 0.5s">
+        <img src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/RG_Shader.gif"
+          alt="RG Shader">
+        <h2>RG SHADER</h2>
+        <a href="Add-ons/rg_shader.html">VIEW</a>
+      </div>
+
+      <!-- 6 -->
+      <div class="grid-item" style="animation-delay: 0.6s">
+        <img src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/fps_booster.jpg"
+          alt="FPS Booster">
+        <h2>FPS BOOSTER</h2>
+        <a href="Add-ons/fps_booster.html">VIEW</a>
+      </div>
+
+      <!-- 7 -->
+      <div class="grid-item" style="animation-delay: 0.7s">
+        <img
+          src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/aesthetic_sounds.jpg"
+          alt="Aesthetic Sound">
+        <h2>AESTHETIC SOUND</h2>
+        <a href="Add-ons/aesthetic_sounds.html">VIEW</a>
+      </div>
+
+      <!-- 8 -->
+      <div class="grid-item" style="animation-delay: 0.8s">
+        <img
+          src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/warrior_client.png"
+          alt="Warriors PvP Client">
+        <h2>WARRIORS PVP</h2>
+        <a href="Add-ons/warriors_client.html">VIEW</a>
+      </div>
+
+      <!-- 9 -->
+      <div class="grid-item" style="animation-delay: 0.9s">
+        <img src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/red_dragon.jpg"
+          alt="Red Dragon 16x">
+        <h2>RED DRAGON 16X</h2>
+        <a href="Add-ons/reddragon.html">VIEW</a>
+      </div>
+
+      <!-- 10 -->
+      <div class="grid-item" style="animation-delay: 1.0s">
+        <img
+          src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/warriors-64x.jpg"
+          alt="Warriors 64x">
+        <h2>WARRIORS 64X</h2>
+        <a href="Add-ons/warriors'64x.html">VIEW</a>
+      </div>
+
+      <!-- 11 -->
+      <div class="grid-item" style="animation-delay: 1.1s">
+        <img
+          src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/Gamma_optimizer.jpg"
+          alt="Gamma Optimizer">
+        <h2>GAMMA OPTIMIZER</h2>
+        <a href="Add-ons/gammaop.html">VIEW</a>
+      </div>
+
+      <!-- 12 -->
+      <div class="grid-item" style="animation-delay: 1.2s">
+        <img src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/pure_op.jpg"
+          alt="Pure Optimizer">
+        <h2>PURE OPTIMIZER</h2>
+        <a href="Add-ons/pureop.html">VIEW</a>
+      </div>
+
+      <!-- 13 -->
+      <div class="grid-item" style="animation-delay: 1.3s">
+        <img src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/Dark_ui.jpg"
+          alt="Red UI Transparent">
+        <h2>RED UI</h2>
+        <a href="Add-ons/darkui.html">VIEW</a>
+      </div>
+
+      <!-- 14 -->
+      <div class="grid-item" style="animation-delay: 1.4s">
+        <img src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/rd_limiter.jpg"
+          alt="Render Distance Limiter">
+        <h2>RENDER LIMITER</h2>
+        <a href="Add-ons/rd_limiter.html">VIEW</a>
+      </div>
+
+      <!-- 15 -->
+      <div class="grid-item" style="animation-delay: 1.5s">
+        <img
+          src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/one_hit_sword.jpg"
+          alt="One Hit Sword">
+        <h2>ONE HIT SWORD</h2>
+        <a href="Add-ons/onehitsword.html">VIEW</a>
+      </div>
+
+      <!-- 16 -->
+      <div class="grid-item" style="animation-delay: 1.6s">
+        <img
+          src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/vibrant_visuals_extreme.jpg"
+          alt="Vibrant Visuals Extreme">
+        <h2>VIBRANT VISUALS</h2>
+        <a href="Add-ons/vibrant_visual.html">VIEW</a>
+      </div>
+
+      <!-- 17 -->
+      <div class="grid-item" style="animation-delay: 1.7s">
+        <img
+          src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/Land_clearer.jpg"
+          alt="Land Clearer">
+        <h2>Land Clearer</h2>
+        <a href="Add-ons/land_clearer.html">VIEW</a>
+      </div>
+
+      <!-- 18 -->
+      <div class="grid-item" style="animation-delay: 1.8s">
+        <img src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/crosshair.jpg"
+          alt="PvP Crosshairs">
+        <h2>PvP Crosshairs</h2>
+        <a href="Add-ons/pvp_crosshairs.html">VIEW</a>
+      </div>
+    </div>
+
+    <div class="footer-note">© 2026 <span class="highlight">NETHERSPARK STUDIOS</span> · BUILT FOR CREATORS</div>
   </div>
 
-  <!-- 2 -->
-  <div class="grid-item">
-    <img src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/vein_miner.gif" alt="Ore & Tree Vein Miner">
-    <h2>Ore & Tree Vein Miner</h2>
-    <a href="Add-ons/ore_tree_vein_miner.html">VIEW</a>
-  </div>
-
-  <!-- 3 -->
-  <div class="grid-item">
-    <img src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/Night_Vision.jpg" alt="Night Vision">
-    <h2>NIGHT VISION</h2>
-    <a href="Add-ons/night_vision.html">VIEW</a>
-  </div>
-
-  <!-- 4 -->
-  <div class="grid-item">
-    <img src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/rg_visuals.gif" alt="RG Visuals">
-    <h2>RG Visuals</h2>
-    <a href="Add-ons/rg_visuals.html">VIEW</a>
-  </div>
-
-  <!-- 5 -->
-  <div class="grid-item">
-    <img src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/RG_Shader.gif" alt="RG Shader">
-    <h2>RG SHADER</h2>
-    <a href="Add-ons/rg_shader.html">VIEW</a>
-  </div>
-
-  <!-- 6 -->
-  <div class="grid-item">
-    <img src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/fps_booster.jpg" alt="FPS Booster">
-    <h2>FPS BOOSTER</h2>
-    <a href="Add-ons/fps_booster.html">VIEW</a>
-  </div>
-
-  <!-- Others -->
-
-  <div class="grid-item">
-    <img src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/aesthetic_sounds.jpg" alt="Aesthetic Sound">
-    <h2>AESTHETIC SOUND</h2>
-    <a href="Add-ons/aesthetic_sounds.html">VIEW</a>
-  </div>
-
-  <div class="grid-item">
-    <img src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/warrior_client.png" alt="Warriors PvP Client">
-    <h2>WARRIORS PVP</h2>
-    <a href="Add-ons/warriors_client.html">VIEW</a>
-  </div>
-
-  <div class="grid-item">
-    <img src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/red_dragon.jpg" alt="Red Dragon 16x">
-    <h2>RED DRAGON 16X</h2>
-    <a href="Add-ons/reddragon.html">VIEW</a>
-  </div>
-
-  <div class="grid-item">
-    <img src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/warriors-64x.jpg" alt="Warriors 64x">
-    <h2>WARRIORS 64X</h2>
-    <a href="Add-ons/warriors'64x.html">VIEW</a>
-  </div>
-
-  <div class="grid-item">
-    <img src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/Gamma_optimizer.jpg" alt="Gamma Optimizer">
-    <h2>GAMMA OPTIMIZER</h2>
-    <a href="Add-ons/gammaop.html">VIEW</a>
-  </div>
-
-  <div class="grid-item">
-    <img src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/pure_op.jpg" alt="Pure Optimizer">
-    <h2>PURE OPTIMIZER</h2>
-    <a href="Add-ons/pureop.html">VIEW</a>
-  </div>
-
-  <div class="grid-item">
-    <img src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/Dark_ui.jpg" alt="Red UI Transparent">
-    <h2>RED UI</h2>
-    <a href="Add-ons/darkui.html">VIEW</a>
-  </div>
-
-  <div class="grid-item">
-    <img src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/rd_limiter.jpg" alt="Render Distance Limiter">
-    <h2>RENDER LIMITER</h2>
-    <a href="Add-ons/rd_limiter.html">VIEW</a>
-  </div>
-
-  <div class="grid-item">
-    <img src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/one_hit_sword.jpg" alt="One Hit Sword">
-    <h2>ONE HIT SWORD</h2>
-    <a href="Add-ons/onehitsword.html">VIEW</a>
-  </div>
-
-  <div class="grid-item">
-    <img src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/vibrant_visuals_extreme.jpg" alt="Vibrant Visuals Extreme">
-    <h2>VIBRANT VISUALS</h2>
-    <a href="Add-ons/vibrant_visual.html">VIEW</a>
-  </div>
-  <div class="grid-item">
-    <img src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/Land_clearer.jpg" alt="Land Clearer">
-    <h2>Land Clearer</h2>
-    <a href="Add-ons/land_clearer.html">VIEW</a>
-  </div>
-   <div class="grid-item">
-    <img src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/crosshair.jpg" alt="PvP Crosshairs">
-    <h2>PvP Crosshairs</h2>
-    <a href="Add-ons/pvp_crosshairs.html">VIEW</a>
-  </div>
-
-</div>
-
-    <div class="footer-note">© NETHERSPARK STUDIOS · OLED BLACK · PROFESSIONAL EDITION</div>
-  
-
-  <!-- very subtle particle background (white/gray, barely visible) -->
   <script>
-    (function() {
+    (function () {
       const canvas = document.getElementById('particleCanvas');
       const ctx = canvas.getContext('2d');
       let width, height;
       let particles = [];
-      const PARTICLE_COUNT = 80; // fewer, more subtle
+      const colors = ['#ff3b30', '#ff9500', '#ffcc00', '#ffffff'];
 
       function initParticles() {
-        particles = [];
-        for (let i = 0; i < PARTICLE_COUNT; i++) {
-          particles.push({
-            x: Math.random() * width,
-            y: Math.random() * height,
-            radius: Math.random() * 2.5 + 0.5,
-            speedX: (Math.random() - 0.5) * 0.1,
-            speedY: (Math.random() - 0.5) * 0.05,
-            baseOpacity: Math.random() * 0.2 + 0.1, // very faint
-          });
-        }
-      }
-
-      function resizeCanvas() {
         width = window.innerWidth;
         height = window.innerHeight;
         canvas.width = width;
         canvas.height = height;
-        initParticles();
+        particles = [];
+        const particleCount = Math.floor(width / 15);
+        for (let i = 0; i < particleCount; i++) {
+          particles.push(createParticle());
+        }
+      }
+
+      function createParticle() {
+        return {
+          x: Math.random() * width,
+          y: Math.random() * height + height,
+          radius: Math.random() * 2.5 + 0.5,
+          speedY: Math.random() * 2 + 0.5,
+          speedX: (Math.random() - 0.5) * 1.5,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          opacity: Math.random() * 0.6 + 0.1,
+          life: Math.random() * 100
+        };
       }
 
       function drawParticles() {
         ctx.clearRect(0, 0, width, height);
-        // pure black background
-        ctx.fillStyle = '#000000';
-        ctx.fillRect(0, 0, width, height);
-        
-        for (let p of particles) {
-          p.x += p.speedX;
-          p.y += p.speedY;
-          if (p.x < 0) p.x = width;
-          if (p.x > width) p.x = 0;
-          if (p.y < 0) p.y = height;
-          if (p.y > height) p.y = 0;
 
-          let op = p.baseOpacity + Math.sin(Date.now() * 0.002 + p.radius) * 0.05;
-          op = Math.min(0.3, Math.max(0.05, op));
-
-          // white/gray particles
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.radius * 1.5, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(180, 180, 180, ${op * 0.3})`; // very soft glow
-          ctx.fill();
-
+        particles.forEach((p, index) => {
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(220, 220, 220, ${op})`;
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = p.opacity;
+          ctx.shadowBlur = 12;
+          ctx.shadowColor = p.color;
           ctx.fill();
-        }
+
+          p.y -= p.speedY;
+          p.x += p.speedX + Math.sin(p.life * 0.05) * 0.5;
+          p.life++;
+
+          if (p.y < -10) {
+            particles[index] = createParticle();
+            particles[index].y = height + 10;
+          }
+        });
+
+        ctx.shadowBlur = 0;
+        ctx.globalAlpha = 1;
         requestAnimationFrame(drawParticles);
       }
 
-      window.addEventListener('resize', resizeCanvas);
-      resizeCanvas();
+      window.addEventListener('resize', initParticles);
+      initParticles();
       drawParticles();
     })();
 
-    // search filter
+    // Search filter
     const searchInput = document.getElementById('searchInput');
     const gridItems = document.querySelectorAll('.grid-item');
     searchInput.addEventListener('input', function (e) {
       const q = e.target.value.trim().toLowerCase();
       gridItems.forEach(item => {
         const title = item.querySelector('h2').innerText.toLowerCase();
-        item.style.display = title.includes(q) ? 'flex' : 'none';
+        if (title.includes(q)) {
+          item.style.display = 'flex';
+          item.style.animation = 'none';
+          item.style.opacity = '1';
+        } else {
+          item.style.display = 'none';
+        }
       });
     });
   </script>
@@ -497,4 +680,5 @@
   <script>(function (o) { var d = document, s = d.createElement('script'), l = d.scripts[d.scripts.length - 1]; s.settings = o || {}; s.src = "\/\/grimy-bicycle.com\/b.XaV\/sHdeGml\/0PY\/WgcC\/QeJmA9wu\/ZfU\/lOkaPNTaYp1\/M\/ztYi5TOTTIEItlN\/jfUqzcN-jYkd5\/MXgL"; s.async = true; s.referrerPolicy = 'no-referrer-when-downgrade'; l.parentNode.insertBefore(s, l); })({})</script>
   <script>(function (o) { var d = document, s = d.createElement('script'), l = d.scripts[d.scripts.length - 1]; s.settings = o || {}; s.src = "\/\/grimy-bicycle.com\/bWXdVDs.dcGTlS0wY\/WtcY\/weOmG9XucZ\/UslekCPPTXYG1lNWD\/APwQMIj_QctqNbjnUZ0-MQD\/Ahy-NgQZ"; s.async = true; s.referrerPolicy = 'no-referrer-when-downgrade'; l.parentNode.insertBefore(s, l); })({})</script>
 </body>
+
 </html>
