@@ -305,7 +305,7 @@
 
     .grid-item img {
       width: 100%;
-      height: 200px;
+      aspect-ratio: 16 / 9;
       object-fit: cover;
       border-radius: 12px;
       margin-bottom: 1.8rem;
@@ -379,10 +379,6 @@
 
       .subhead {
         font-size: 1.3rem;
-      }
-
-      .grid-item img {
-        height: 180px;
       }
     }
   </style>
@@ -587,6 +583,59 @@
         <h2>PvP Crosshairs</h2>
         <a href="Add-ons/pvp_crosshairs.html">VIEW</a>
       </div>
+
+      <!-- 19 -->
+      <div class="grid-item" style="animation-delay: 1.9s">
+        <img
+          src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/origin_animations.jpg"
+          alt="Origin Animations">
+        <h2>Origin Animations</h2>
+        <a href="Add-ons/origin_animations.html">VIEW</a>
+      </div>
+
+      <!-- 20 -->
+      <div class="grid-item" style="animation-delay: 2.0s">
+        <img
+          src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/alya_animation.gif"
+          alt="Alya UI">
+        <h2>Alya UI</h2>
+        <a href="Add-ons/alya_ui.html">VIEW</a>
+      </div>
+
+      <!-- 21 -->
+      <div class="grid-item" style="animation-delay: 2.1s">
+        <img
+          src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/dynamic_lights.jpg"
+          alt="Dynamic Lights">
+        <h2>Dynamic Lights</h2>
+        <a href="Add-ons/dynamic_lights.html">VIEW</a>
+      </div>
+
+      <!-- 22 -->
+      <div class="grid-item" style="animation-delay: 2.2s">
+        <img
+          src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/solo_levelling_ui.gif"
+          alt="Solo Levelling UI">
+        <h2>Solo Levelling UI</h2>
+        <a href="Add-ons/solo_levelling.html">VIEW</a>
+      </div>
+
+      <!-- 23 -->
+      <div class="grid-item" style="animation-delay: 2.3s">
+        <img
+          src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/glowing_ores.gif"
+          alt="Glowing Animated Ores">
+        <h2>Glowing Animated Ores</h2>
+        <a href="Add-ons/glowing_ores.html">VIEW</a>
+      </div>
+
+      <!-- 24 -->
+      <div class="grid-item" style="animation-delay: 2.4s">
+        <img src="https://raw.githubusercontent.com/Risab-Gamerz/mcbe-addons/refs/heads/main/thumbnails/waguri_ui.gif"
+          alt="Waguri Live UI">
+        <h2>Waguri Live UI</h2>
+        <a href="Add-ons/waguri_ui.html">VIEW</a>
+      </div>
     </div>
 
     <div class="footer-note">© 2026 <span class="highlight">NETHERSPARK STUDIOS</span> · BUILT FOR CREATORS</div>
@@ -633,8 +682,6 @@
           ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
           ctx.fillStyle = p.color;
           ctx.globalAlpha = p.opacity;
-          ctx.shadowBlur = 12;
-          ctx.shadowColor = p.color;
           ctx.fill();
 
           p.y -= p.speedY;
@@ -647,7 +694,6 @@
           }
         });
 
-        ctx.shadowBlur = 0;
         ctx.globalAlpha = 1;
         requestAnimationFrame(drawParticles);
       }

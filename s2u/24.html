@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Subcribe To Unlock</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#0a0f1c;
+overflow:hidden;
+color:white;
+}
+
+/* Animated floating blobs */
+
+.bg{
+position:absolute;
+width:100%;
+height:100%;
+overflow:hidden;
+z-index:0;
+}
+
+.blob{
+position:absolute;
+border-radius:50%;
+filter:blur(80px);
+opacity:0.5;
+animation:float 15s infinite linear;
+}
+
+.blob:nth-child(1){
+width:300px;
+height:300px;
+background:#ff0033;
+left:10%;
+top:20%;
+animation-duration:18s;
+}
+
+.blob:nth-child(2){
+width:350px;
+height:350px;
+background:#0066ff;
+right:10%;
+top:10%;
+animation-duration:22s;
+}
+
+.blob:nth-child(3){
+width:250px;
+height:250px;
+background:#00ffaa;
+left:40%;
+bottom:10%;
+animation-duration:20s;
+}
+
+@keyframes float{
+0%{
+transform:translateY(0px) translateX(0px);
+}
+50%{
+transform:translateY(-60px) translateX(40px);
+}
+100%{
+transform:translateY(0px) translateX(0px);
+}
+}
+
+/* Card */
+
+.container{
+
+position:relative;
+z-index:1;
+
+background:rgba(255,255,255,0.05);
+
+padding:40px;
+
+width:380px;
+
+border-radius:20px;
+
+backdrop-filter:blur(25px);
+
+border:1px solid rgba(255,255,255,0.08);
+
+box-shadow:
+0 0 40px rgba(0,0,0,0.6),
+inset 0 0 20px rgba(255,255,255,0.05);
+
+text-align:center;
+
+animation:cardFloat 4s ease-in-out infinite;
+}
+
+@keyframes cardFloat{
+0%,100%{
+transform:translateY(0px);
+}
+50%{
+transform:translateY(-12px);
+}
+}
+
+.logo{
+
+font-size:26px;
+font-weight:700;
+
+background:linear-gradient(90deg,#ff0033,#0066ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+margin-bottom:10px;
+}
+
+.subtitle{
+
+font-size:14px;
+
+color:#cfd8dc;
+
+margin-bottom:30px;
+
+line-height:1.5;
+}
+
+/* Buttons */
+
+button{
+
+width:100%;
+
+padding:14px;
+
+border:none;
+
+border-radius:12px;
+
+font-size:16px;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:0.3s;
+}
+
+/* Subscribe */
+
+.subscribe{
+
+background:linear-gradient(90deg,#ff0033,#ff4d4d);
+
+color:white;
+
+box-shadow:0 0 20px rgba(255,0,51,0.5);
+}
+
+.subscribe:hover{
+
+transform:translateY(-3px) scale(1.03);
+
+box-shadow:0 0 30px rgba(255,0,51,0.8);
+}
+
+/* Unlock */
+
+.unlock{
+
+background:linear-gradient(90deg,#00c853,#00ffaa);
+
+color:#002b18;
+
+margin-top:15px;
+
+display:none;
+
+box-shadow:0 0 20px rgba(0,255,170,0.5);
+}
+
+.unlock:hover{
+
+transform:translateY(-3px) scale(1.03);
+
+box-shadow:0 0 30px rgba(0,255,170,0.8);
+}
+
+/* Spinner */
+
+.spinner{
+
+margin:20px auto;
+
+width:45px;
+
+height:45px;
+
+border:4px solid rgba(255,255,255,0.15);
+
+border-top:4px solid #00ffaa;
+
+border-radius:50%;
+
+animation:spin 1s linear infinite;
+
+display:none;
+}
+
+@keyframes spin{
+
+0%{transform:rotate(0deg);}
+100%{transform:rotate(360deg);}
+}
+
+.verify{
+
+height:24px;
+
+font-size:15px;
+
+color:#9fb3c8;
+
+margin-top:5px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="bg">
+
+<div class="blob"></div>
+<div class="blob"></div>
+<div class="blob"></div>
+
+</div>
+
+<div class="container">
+
+<div class="logo">
+Subscribe To Unlock
+</div>
+
+<div class="subtitle">
+Subscribe to our official YouTube channel to verify your access and Download The Content.
+</div>
+
+<button class="subscribe" onclick="subscribe()">
+Subscribe to Continue
+</button>
+
+<div class="spinner" id="spinner"></div>
+
+<div class="verify" id="verifyText"></div>
+
+<button class="unlock" id="unlockBtn" onclick="unlock()">
+Access Secure Link
+</button>
+
+</div>
+
+<script>
+
+let dots = 0;
+let verifyInterval;
+
+function subscribe()
+{
+
+window.open("https://www.youtube.com/@NetherSparkStudios", "_blank");
+
+startVerification();
+
+}
+
+function startVerification()
+{
+
+document.getElementById("spinner").style.display="block";
+
+let verifyText=document.getElementById("verifyText");
+
+verifyInterval=setInterval(()=>{
+
+dots++;
+
+if(dots>3)dots=1;
+
+verifyText.innerText="Verifying your subscription"+".".repeat(dots);
+
+},500);
+
+setTimeout(()=>{
+
+clearInterval(verifyInterval);
+
+document.getElementById("spinner").style.display="none";
+
+verifyText.innerText="Verification complete ✓";
+
+document.getElementById("unlockBtn").style.display="block";
+
+},15000);
+
+}
+
+function unlock()
+{
+
+window.location.href="https://mcpedl.com/waguri-live-ui-animated-ui/";
+
+}
+
+</script>
+
+</body>
+</html>
